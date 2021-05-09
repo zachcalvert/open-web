@@ -16,7 +16,8 @@ router.register(r'events', views.EventViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api-token-auth/', drf_views.obtain_auth_token)
+    path('api-token-auth/', drf_views.obtain_auth_token),
+    path('current-user', views.CurrentUserView.as_view()),
 ]
 
 admin.site.site_header = "Open Web Admin"

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Show, SimpleShowLayout, TextField, DateField, RichTextField } from 'react-admin';
 
 const EventTitle = ({ record }) => {
-    return <span>{record ? `"${record.name}"` : ''}</span>;
+    return <span>{record ? `${record.name}` : ''}</span>;
 };
 
 export const EventShow = (props) => (
