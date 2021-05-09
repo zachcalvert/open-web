@@ -6,9 +6,14 @@ from events.models import Event
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    group = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'url', 'username', 'email']
+        fields = ['id', 'url', 'username', 'email', 'group']
+
+    def get_group(self, obj):
+        return str(obj.groups.first())
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

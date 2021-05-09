@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from api import serializers
 from enrollments.models import Enrollment
@@ -16,6 +18,12 @@ class IsAdminUser(permissions.BasePermission):
 
 class StaffOnlyModelViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
+
+
+class CurrentUserView(APIView):
+    def get(self, request):
+        serializer = serializers.UserSerializer(request.user, context={'request': request })
+        return Response(serializer.data)
 
 
 class UserViewSet(StaffOnlyModelViewSet):
