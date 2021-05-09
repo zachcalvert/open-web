@@ -4,6 +4,7 @@ import { purple } from '@material-ui/core/colors';
 import { Admin, ListGuesser, Resource, ShowGuesser } from 'react-admin';
 import drfProvider, { tokenAuthProvider, fetchJsonWithAuthToken } from 'ra-data-django-rest-framework';
 
+import { Dashboard } from './components/Dashboard';
 import { EnrollmentShow } from './components/Enrollment/EnrollmentShow';
 import { EnrollmentList } from './components/Enrollment/EnrollmentList';
 import { EventList } from './components/Event/EventList';
@@ -16,18 +17,21 @@ const dataProvider = drfProvider("http://localhost:8000/api", fetchJsonWithAuthT
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // Purple and green play nicely together.
       main: purple[500],
     },
     secondary: {
-      // This is green.A700 as hex.
       main: '#648dae',
     },
   },
 });
 
 const App = () => (
-    <Admin theme={theme} authProvider={authProvider} dataProvider={dataProvider}>
+    <Admin
+      theme={theme}
+      authProvider={authProvider}
+      dataProvider={dataProvider}
+      dashboard={Dashboard}
+    >
       <Resource name="users" list={UserList} show={UserShow} />
       <Resource name="enrollments" list={EnrollmentList} show={EnrollmentShow} />
       <Resource name="events" list={EventList} show={EventShow} />
