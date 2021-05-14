@@ -4,8 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api import serializers
-from enrollments.models import Enrollment
-from events.models import Event
+from enrollments.models import Enrollment, EnrollmentType
 
 
 class IsAdminUser(permissions.BasePermission):
@@ -57,6 +56,24 @@ class GroupViewSet(StaffOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class EnrollmentTypeViewSet(StaffOnlyModelViewSet):
+    queryset = EnrollmentType.objects.all()
+    serializer_class = serializers.EnrollmentTypeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'name'
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the enrollments organized
+        for the currently authenticated user's group.
+        """
+        user = self.request.user
+        if user.is_superuser:
+            return EnrollmentType.objects.all()
+
+        return EnrollmentType.objects.filter(organizer__in=user.groups.all())
+
+
 class EnrollmentViewSet(StaffOnlyModelViewSet):
     queryset = Enrollment.objects.all()
     serializer_class = serializers.EnrollmentSerializer
@@ -72,20 +89,3 @@ class EnrollmentViewSet(StaffOnlyModelViewSet):
             return Enrollment.objects.all()
 
         return Enrollment.objects.filter(organizer__in=user.groups.all())
-
-
-class EventViewSet(StaffOnlyModelViewSet):
-    queryset = Event.objects.all()
-    serializer_class = serializers.EventSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        """
-        This view should return a list of all the events organized
-        for the currently authenticated user's group.
-        """
-        user = self.request.user
-        if user.is_superuser:
-            return Event.objects.all()
-
-        return Event.objects.filter(organizer__in=user.groups.all())

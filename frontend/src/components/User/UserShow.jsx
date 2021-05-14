@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Show, SimpleShowLayout, TextField, DateField, RichTextField } from 'react-admin';
+import { Show, SimpleShowLayout, TextField } from 'react-admin';
 
 const UserTitle = () => {
     return <span>User Details</span>;

@@ -4,14 +4,14 @@ import { Admin, Resource } from 'react-admin';
 import drfProvider, { tokenAuthProvider, fetchJsonWithAuthToken } from 'ra-data-django-rest-framework';
 
 import { Dashboard } from './components/Dashboard';
+
 import { EnrollmentShow } from './components/Enrollment/EnrollmentShow';
 import { EnrollmentList } from './components/Enrollment/EnrollmentList';
-import { EventList } from './components/Event/EventList';
-import { EventShow } from './components/Event/EventShow';
+import { EnrollmentCreate } from './components/Enrollment/EnrollmentCreate';
+import { EnrollmentEdit } from './components/Enrollment/EnrollmentEdit';
+
 import { UserShow } from './components/User/UserShow';
 import { UserList } from './components/User/UserList';
-import { EventEdit } from './components/Event/EventEdit';
-import { EventCreate } from './components/Event/EventCreate';
 import { UserCreate } from './components/User/UserCreate';
 import { UserEdit } from './components/User/UserEdit';
 
@@ -34,8 +34,7 @@ const App = () => {
       dataProvider={dataProvider}
       dashboard={Dashboard}>
       <Resource name="users" list={UserList} show={UserShow} create={UserCreate} edit={UserEdit} />
-      <Resource name="enrollments" list={EnrollmentList} show={EnrollmentShow}  />
-      <Resource name="events" list={EventList} show={EventShow} create={EventCreate} edit={EventEdit} />
+      <Resource name="enrollments" list={EnrollmentList} show={EnrollmentShow} create={EnrollmentCreate} edit={EnrollmentEdit}  />
     </Admin>
 )};
 

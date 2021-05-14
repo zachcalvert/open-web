@@ -6,10 +6,12 @@ const EnrollmentTitle = ({ record }) => {
 };
 
 export const EnrollmentShow = (props) => (
-    <Show title={<EnrollmentTitle />} {...props}>
-        <SimpleShowLayout>
-            <TextField source="name" />
-            <TextField source="organization" />
-        </SimpleShowLayout>
-    </Show>
+  <Show title={<EnrollmentTitle />} {...props}>
+    <SimpleShowLayout>
+      <TextField source="name" />
+      <TextField source="enrollment_type" />
+      <TextField source="filled_seats" />
+      <TextField source="max_seats" />
+    </SimpleShowLayout>
+  </Show>
 );

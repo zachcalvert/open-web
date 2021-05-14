@@ -2,12 +2,28 @@ import uuid
 
 from django.contrib.auth.models import Group
 from django.db import models
+from django.template.defaultfilters import slugify
+
+
+class EnrollmentType(models.Model):
+    name = models.CharField(max_length=25)
+    slug = models.SlugField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(EnrollmentType, self).save(*args, **kwargs)
 
 
 class Enrollment(models.Model):
     identifier = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
+    enrollment_type = models.ForeignKey(EnrollmentType, null=True, on_delete=models.SET_NULL)
     organizer = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL)
+    max_seats = models.IntegerField(default=100)
+    filled_seats = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
