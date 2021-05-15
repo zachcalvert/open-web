@@ -6,3 +6,4 @@ djangorestframework-simplejwt==4.6.0
 markdown==3.3.4
 django-filter==2.4.0
 django-cors-headers==3.7.0
+dj-stripe==2.4.3

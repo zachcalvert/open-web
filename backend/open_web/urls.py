@@ -18,6 +18,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-token-auth/', drf_views.obtain_auth_token),
     path('current-user', views.CurrentUserView.as_view()),
+    path('djstripe/', include('donations.urls'))
 ]
 
 admin.site.site_header = "Open Web Admin"
