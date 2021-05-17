@@ -29,7 +29,7 @@ export const Dashboard = (props) => {
 
   React.useEffect(() => {
     async function fetchCurrentUser() {
-      const { data } = await axios.get('http://localhost:8000/current-user', {
+      const { data } = await axios.get(`${process.env.REACT_APP_DJANGO_URL}current-user/`, {
         headers: {
           Authorization: `Token ${localStorage.getItem('token')}`
         }

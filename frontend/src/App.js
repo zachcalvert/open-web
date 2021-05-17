@@ -15,8 +15,8 @@ import { UserList } from './components/User/UserList';
 import { UserCreate } from './components/User/UserCreate';
 import { UserEdit } from './components/User/UserEdit';
 
-const authProvider = tokenAuthProvider({obtainAuthTokenUrl: "http://localhost:8000/api-token-auth/"})
-const dataProvider = drfProvider("http://localhost:8000/api", fetchJsonWithAuthToken);
+const authProvider = tokenAuthProvider({obtainAuthTokenUrl: `${process.env.REACT_APP_DJANGO_URL}api-token-auth/`})
+const dataProvider = drfProvider(`${process.env.REACT_APP_DJANGO_URL}api/`, fetchJsonWithAuthToken);
 const theme = createMuiTheme({
   palette: {
     secondary: {
