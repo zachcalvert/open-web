@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-zu%kb05rbo8=7k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['openwebplatform.org', 'www.openwebplatform.org']
+ALLOWED_HOSTS = ['localhost', 'openwebplatform.org', 'www.openwebplatform.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
