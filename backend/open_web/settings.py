@@ -126,8 +126,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+environment = os.environ.get('DJANGO_ENVIRONMENT')
+if environment == 'local':
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    MEDIA_URL = '/media/'
+    STATIC_URL = '/static/'
+else:
+    MEDIA_URL = 'https://openwebplatform.org/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    STATIC_URL = '/django_static/'
+    STATIC_ROOT = BASE_DIR / 'django_static'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
