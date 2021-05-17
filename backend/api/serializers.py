@@ -36,7 +36,7 @@ class EnrollmentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Enrollment
-        fields = ['id', 'name', 'enrollment_type', 'filled_seats', 'max_seats']
+        fields = ['id', 'title', 'enrollment_type', 'filled_seats', 'max_seats', 'start_time', 'end_time', 'description']
 
     def get_id(self, obj):
         return obj.identifier

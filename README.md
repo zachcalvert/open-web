@@ -6,6 +6,7 @@ Open web is an application designed to help nonprofits manage:
 2. Fundraising channels
 3. Event management
 4. Donations
+5. Media files
 
 
 ### Dev setup
@@ -22,6 +23,6 @@ Open web is an application designed to help nonprofits manage:
 `docker-compose -f docker-compose-dev.yml up`
 
 The django admin is accessible at: `http://localhost:8000`  
-The react admin is accessible at: `http://localhost:300`    
+The react admin is accessible at: `http://localhost:3000`
 
 Log in with `admin`/`admin`

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Create, SimpleForm, TextInput, SelectInput, NumberInput } from 'react-admin';
+import { Create, SimpleForm, TextInput, SelectInput, NumberInput, DateTimeInput } from 'react-admin';
 
 export const EnrollmentCreate = (props) => {
   const enrollmentTypes = [
@@ -12,7 +12,7 @@ export const EnrollmentCreate = (props) => {
   return (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="name" />
+      <TextInput source="title" />
       <SelectInput 
         source="enrollment_type"
         onCreate={() => {
@@ -22,7 +22,10 @@ export const EnrollmentCreate = (props) => {
           return newEnrollmentType;
         }}
         choices={enrollmentTypes} />
+      <DateTimeInput source="start_time" showTime={true} />
+      <DateTimeInput source="end_time" showTime={true} />
       <NumberInput source="max_seats" />
+      <TextInput multiline source="description" />
     </SimpleForm>
   </Create>
 )};
