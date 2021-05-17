@@ -5,7 +5,7 @@ from enrollments.models import Enrollment, EnrollmentType
 
 class EnrollmentAdmin(admin.ModelAdmin):
     model = Enrollment
-    list_display = ('title', 'enrollment_type', 'filled_seats', 'max_seats', 'start_time', 'end_time')
+    list_display = ('title', 'enrollment_type', 'filled_seats', 'max_seats', 'start', 'end')
     list_filter = ('organizer',)
 
 

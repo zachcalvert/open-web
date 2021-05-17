@@ -47,25 +47,9 @@ function a11yProps(index) {
   };
 }
 
-export const EventList = (props) => {
+export const EnrollmentList = (props) => {
   const [value, setValue] = React.useState(0);
-  const events = [
-    {
-      start: '2021-5-20-3:00',
-      end: '2021-5-20-6:00',
-      eventClasses: 'optionalEvent',
-      allDay: false,
-      title: 'test event',
-      description: 'This is a test description of an event',
-    },
-    {
-      start: '2021-5-30',
-      end: '2021-5-30',
-      title: 'test event',
-      description: 'This is a test description of an event',
-      data: 'you can add what ever random data you may want to use later',
-    },
-  ];
+  const [events, setEvents] = React.useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -88,9 +72,11 @@ export const EventList = (props) => {
       <TabPanel value={value} index={0}>
         <List exporter={false} {...props}>
           <Datagrid rowClick="show">
-            <TextField source="name" />
-            <DateField source="date" />
-            <TextField source="location" />
+            <TextField source="title" />
+            <TextField label="Type" source="enrollment_type" />
+            <DateField label="Start" source="start_time" showTime={true} options={{ weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric' }} />
+            <TextField source="filled_seats" />
+            <TextField source="max_seats" />
           </Datagrid>
         </List>
       </TabPanel>

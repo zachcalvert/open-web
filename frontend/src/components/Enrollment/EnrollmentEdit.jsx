@@ -11,8 +11,8 @@ export const EnrollmentEdit = (props) => (
         { id: 'Workshop', name: 'Workshop' },
         { id: 'Program', name: 'Program' },
       ]} />
-      <DateTimeInput source="start_time" showTime={true} />
-      <DateTimeInput source="end_time" showTime={true} />
+      <DateTimeInput source="start" showTime={true} />
+      <DateTimeInput source="end" showTime={true} />
       <NumberInput source="max_seats" />
       <TextInput multiline source="description" />
     </SimpleForm>

@@ -2,6 +2,8 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Admin, Resource } from 'react-admin';
 import drfProvider, { tokenAuthProvider, fetchJsonWithAuthToken } from 'ra-data-django-rest-framework';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
 
 import { Dashboard } from './components/Dashboard';
 
@@ -33,8 +35,8 @@ const App = () => {
       authProvider={authProvider}
       dataProvider={dataProvider}
       dashboard={Dashboard}>
-      <Resource name="users" list={UserList} show={UserShow} create={UserCreate} edit={UserEdit} />
-      <Resource name="enrollments" list={EnrollmentList} show={EnrollmentShow} create={EnrollmentCreate} edit={EnrollmentEdit}  />
+      <Resource name="users" icon={AccountCircleIcon} list={UserList} show={UserShow} create={UserCreate} edit={UserEdit} />
+      <Resource name="enrollments" icon={EventSeatIcon} list={EnrollmentList} show={EnrollmentShow} create={EnrollmentCreate} edit={EnrollmentEdit}  />
     </Admin>
 )};
 
