@@ -2,7 +2,7 @@ FROM node:13.12.0-alpine as build
 
 WORKDIR /app/frontend
 ARG REACT_APP_DJANGO_URL
-ENV REACT_APP_DJANGO_URL https://openwebplatform.com/
+ENV REACT_APP_DJANGO_URL https://openwebplatform.org/
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
 RUN npm ci --silent
