@@ -158,3 +158,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://12daysofshotguns.com",
     "https://www.12daysofshotguns.com",
 ]
+
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "pk_test_c2U")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_YmK")
+STRIPE_LIVE_MODE = False
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+DJSTRIPE_USE_NATIVE_JSONFIELD = True
