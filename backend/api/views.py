@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User, Group
+from django.utils import timezone
 from rest_framework import viewsets, permissions
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -89,3 +91,29 @@ class EnrollmentViewSet(StaffOnlyModelViewSet):
             return Enrollment.objects.all()
 
         return Enrollment.objects.filter(organizer__in=user.groups.all())
+
+
+@api_view(('GET',))
+@permission_classes([permissions.AllowAny,])
+def get_open_enrollments(request, organization_id):
+
+    group = Group.objects.get(id=organization_id)
+    print(group)
+    open_enrollments = Enrollment.objects.filter(
+        organizer_id=group.id,
+        start__gte=timezone.now(),
+        available_seats__gt=0
+    )
+    print(open_enrollments)
+
+    return Response([
+        {
+            "identifier": oe.identifier,
+            "title": oe.title,
+            "start": oe.start,
+            "end": oe.end,
+            "description": oe.description,
+            "available_seats": oe.available_seats,
+            "max_seats": oe.max_seats
+        } for oe in open_enrollments
+    ])

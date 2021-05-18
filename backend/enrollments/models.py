@@ -23,7 +23,7 @@ class Enrollment(models.Model):
     enrollment_type = models.ForeignKey(EnrollmentType, null=True, on_delete=models.SET_NULL)
     organizer = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL)
     max_seats = models.IntegerField(default=100)
-    filled_seats = models.IntegerField(default=0)
+    available_seats = models.IntegerField(default=0)
     start = models.DateTimeField(null=True, blank=True)
     end = models.DateTimeField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)

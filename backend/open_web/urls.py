@@ -16,8 +16,9 @@ router.register(r'enrollment_types', views.EnrollmentTypeViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('open-enrollments/<int:organization_id>/', views.get_open_enrollments),
     path('api-token-auth/', drf_views.obtain_auth_token),
-    path('current-user', views.CurrentUserView.as_view()),
+    path('current-user/', views.CurrentUserView.as_view()),
     path('djstripe/', include('donations.urls'))
 ]
 
