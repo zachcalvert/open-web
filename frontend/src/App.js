@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from "axios";
+
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Admin, Resource } from 'react-admin';
 import drfProvider, { tokenAuthProvider, fetchJsonWithAuthToken } from 'ra-data-django-rest-framework';
@@ -28,7 +30,20 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-  
+
+  React.useEffect(() => {
+    async function fetchCurrentUser() {
+      const { data } = await axios.get(`${process.env.REACT_APP_DJANGO_URL}current-user/`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      });
+      localStorage.setItem('username', data.username);
+      localStorage.setItem('organization', data.group);
+    }
+    fetchCurrentUser();
+  }, []);
+
   return (
     <Admin
       theme={theme}

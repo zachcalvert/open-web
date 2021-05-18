@@ -1,6 +1,5 @@
 import React from 'react';
 import { Title } from 'react-admin';
-import axios from "axios";
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -24,21 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Dashboard = (props) => {
   const classes = useStyles();
-  const [username, setUsername] = React.useState(null);
-  const [organization, setOrganization] = React.useState(null);
-
-  React.useEffect(() => {
-    async function fetchCurrentUser() {
-      const { data } = await axios.get(`${process.env.REACT_APP_DJANGO_URL}current-user/`, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`
-        }
-      });
-      setUsername(data.username);
-      setOrganization(data.group);
-    }
-    fetchCurrentUser();
-  }, []);
+  const username = localStorage.getItem('username');
+  const organization = localStorage.getItem('organization');
 
   return (
     <Box className={classes.root} fontFamily="fontFamily">
